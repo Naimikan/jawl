@@ -2,9 +2,12 @@
 	"name": "@jawl/button",
 	"version": "1.0.0",
 	"description": "jawl-button",
-	"main": "dist/button.js",
-	"module": "dist/button.mjs",
-	"types": "dist/button.d.ts",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
 	"scripts": {
 		"build": "tsc && rollup -c ./rollup.config.js --bundleConfigAsCjs",
 		"lint": "eslint --ext .ts,.tsx,.js,.jsx src"

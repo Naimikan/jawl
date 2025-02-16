@@ -3,12 +3,13 @@
   "private": true,
   "description": "Just Another Webcomponent Library",
   "workspaces": [
+    "docs",
     "packages/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces",
     "lint": "npm run lint --workspaces",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:docs": "npm run dev --workspaces"
   },
   "repository": {
     "type": "git",
