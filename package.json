@@ -1,0 +1,23 @@
+{
+  "name": "jawl-web-components",
+  "private": true,
+  "description": "Just Another Webcomponent Library",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naimikan/jawl.git"
+  },
+  "author": "Guillem Aldeguer Lima",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/Naimikan/jawl/issues"
+  },
+  "homepage": "https://github.com/Naimikan/jawl#readme"
+}
