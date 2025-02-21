@@ -1,0 +1,54 @@
+{
+  "extends": [
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "import",
+    "@typescript-eslint"
+  ],
+  "root": true,
+  "ignorePatterns": [
+    "node_modules"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": true
+    }
+  },
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    // Import
+    "import/no-unresolved": 0,
+    "import/no-named-as-default": 1,
+    "import/no-extraneous-dependencies": 0,
+    "import/extensions": [
+      "error",
+      "never",
+      {
+        "packages": "always"
+      }
+    ],
+    // Others
+    "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
+    "class-methods-use-this": 0,
+    "no-tabs": "off",
+    "indent": ["error", 2],
+    "linebreak-style": 0,
+    "max-len": ["error", 250, 2, { "ignoreComments": true }],
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1 }],
+    "no-underscore-dangle": 0,
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": { "minProperties": 6, "multiline": true, "consistent": true },
+        "ObjectPattern": { "minProperties": 6, "multiline": true, "consistent": true }
+      }
+    ]
+  }
+}

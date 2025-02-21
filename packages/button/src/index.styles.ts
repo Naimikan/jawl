@@ -1,7 +1,7 @@
 import { css } from 'lit';
 
 const JwButtonStyles = css`
-	button {
+  button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007bff;

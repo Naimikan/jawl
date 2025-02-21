@@ -5,15 +5,15 @@ import JwButtonStyles from './index.styles';
 
 @customElement('jw-button')
 class JwButton extends LitElement {
-	static override styles = JwButtonStyles;
+  static override styles = JwButtonStyles;
 
-	override render() {
-		return html`
-			<button>
-				<slot></slot>
-			</button>
-		`;
-	}
+  override render() {
+    return html`
+      <button>
+        <slot></slot>
+      </button>
+    `;
+  }
 }
 
 export default JwButton;
