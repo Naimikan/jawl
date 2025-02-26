@@ -2,21 +2,36 @@ import { css } from 'lit';
 
 const JwButtonStyles = css`
   button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  button:not(:disabled) {
     cursor: pointer;
   }
 
-  button:hover {
-    background-color: #0056b3;
+  button:not(:disabled):hover {
+    text-decoration: none;
   }
 
-  button:focus {
-    outline: none;
+  ::slotted([slot="left-icon"]) {
+    margin-right: 4px;
+  }
+
+  ::slotted([slot="right-icon"]) {
+    margin-left: 4px;
   }
 `;
 
