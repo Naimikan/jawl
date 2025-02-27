@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import JwButtonStyles from './index.styles';
@@ -11,59 +11,101 @@ import { JwButtonProps, ChangedPropertiesParam } from './types';
 class JwButton extends LitElement implements JwButtonProps {
   static override styles = JwButtonStyles;
 
-  @property({ type: String }) type: JwButtonProps['type'] = 'button';
+  private _availableAriaAttributes = [
+    'aria-label',
+    'aria-labelledby',
+    'aria-pressed',
+    'aria-disabled',
+    'aria-describedby',
+    'aria-expanded',
+    'aria-haspopup',
+    'aria-controls',
+  ];
+
+  @query('button') buttonElement!: HTMLButtonElement;
+
+  @property({ type: String, reflect: true }) type: JwButtonProps['type'] = 'button';
 
   @property({ type: Boolean }) disabled?: JwButtonProps['disabled'];
 
-  @property({ type: String }) form?: JwButtonProps['form'];
+  @property({ type: String, reflect: true }) form?: JwButtonProps['form'];
 
-  private dynamicAttributes: { [key: string]: string } = {};
+  private _dispatchClickEvent(event: MouseEvent) {
+    const newClickEvent = new CustomEvent('jw-button-clicked', {
+      bubbles: true,
+      composed: true,
+      detail: event,
+    });
 
-  static override get observedAttributes() {
-    return [
-      ...Array.from({ length: 26 }, (_, i) => `aria-${String.fromCharCode(i + 65)}`),
-    ];
+    this.buttonElement.dispatchEvent(newClickEvent);
   }
 
-  override attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
-    super.attributeChangedCallback(name, oldValue, newValue);
+  override createRenderRoot() {
+    return this.attachShadow({
+      mode: 'open',
+      delegatesFocus: true,
+    });
+  }
 
-    if (name.startsWith('aria-')) {
-      this.dynamicAttributes[name] = newValue ?? '';
+  protected override firstUpdated(): void {
+    if (this.buttonElement) {
+      this.buttonElement.addEventListener('click', this._dispatchClickEvent.bind(this));
     }
   }
 
   override updated(changedProperties: ChangedPropertiesParam): void {
     super.updated(changedProperties);
 
-    if (changedProperties.has('disabled')) {
-      if (this.disabled) {
-        this.setAttribute('aria-disabled', 'true');
-      } else {
-        this.removeAttribute('aria-disabled');
+    if (this.buttonElement) {
+      if (changedProperties.has('disabled')) {
+        if (this.disabled) {
+          this.buttonElement.setAttribute('aria-disabled', 'true');
+        } else {
+          this.buttonElement.removeAttribute('aria-disabled');
+        }
       }
+
+      this._availableAriaAttributes.forEach((attr) => {
+        const value = this.getAttribute(attr);
+
+        if (value) {
+          this.buttonElement.setAttribute(attr, value);
+        } else {
+          this.buttonElement.removeAttribute(attr);
+        }
+
+        this.removeAttribute(attr);
+      });
+    }
+  }
+
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+
+    if (this.buttonElement) {
+      this.buttonElement.removeEventListener('click', this._dispatchClickEvent.bind(this));
     }
   }
 
   override render() {
-    console.log(this.dynamicAttributes);
-
     return html`
       <button
-        id=${ifDefined(this.id)}
         type=${this.type}
         ?disabled=${this.disabled}
         form=${ifDefined(this.form)}
         part="jw-internal-button"
-        aria-label=${ifDefined(this.dynamicAttributes['aria-label'])}
-        aria-labelledby=${ifDefined(this.dynamicAttributes['aria-labelledby'])}
-        aria-describedby=${ifDefined(this.dynamicAttributes['aria-describedby'])}
       >
-        <slot name="left-icon"></slot>
+        <slot name="prefix"></slot>
         <slot></slot>
-        <slot name="right-icon"></slot>
+        <slot name="suffix"></slot>
       </button>
     `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'jw-button': JwButton;
   }
 }
 

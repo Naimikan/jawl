@@ -23,3 +23,11 @@
 .read-the-docs {
   color: #888;
 }
+
+#my-button::part(jw-internal-button) {
+  background-color: red;
+}
+
+.prefix {
+  margin-right: 12px;
+}

@@ -26,11 +26,11 @@ const JwButtonStyles = css`
     text-decoration: none;
   }
 
-  ::slotted([slot="left-icon"]) {
+  ::slotted([slot="prefix"]) {
     margin-right: 4px;
   }
 
-  ::slotted([slot="right-icon"]) {
+  ::slotted([slot="suffix"]) {
     margin-left: 4px;
   }
 `;
