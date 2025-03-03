@@ -26,6 +26,11 @@ const JwButtonStyles = css`
     text-decoration: none;
   }
 
+  button:not(:disabled):focus-visible {
+    outline: 2px solid #007b77;
+    outline-offset: 2px;
+  }
+
   ::slotted([slot="prefix"]) {
     margin-right: 4px;
   }

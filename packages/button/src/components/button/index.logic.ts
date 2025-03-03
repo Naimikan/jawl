@@ -5,22 +5,18 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import JwButtonStyles from './index.styles';
 
-import { JwButtonProps, ChangedPropertiesParam } from './types';
+import { AVAILABLE_ARIA_ATTRIBUTES } from '../../constants';
+
+import { JwButtonProps, ChangedPropertiesParam, JwButtonClickedEvent } from './types';
 
 @customElement('jw-button')
 class JwButton extends LitElement implements JwButtonProps {
   static override styles = JwButtonStyles;
 
-  private _availableAriaAttributes = [
-    'aria-label',
-    'aria-labelledby',
-    'aria-pressed',
-    'aria-disabled',
-    'aria-describedby',
-    'aria-expanded',
-    'aria-haspopup',
-    'aria-controls',
-  ];
+  static override shadowRootOptions = {
+    ...LitElement.shadowRootOptions,
+    delegatesFocus: true,
+  };
 
   @query('button') buttonElement!: HTMLButtonElement;
 
@@ -30,28 +26,15 @@ class JwButton extends LitElement implements JwButtonProps {
 
   @property({ type: String, reflect: true }) form?: JwButtonProps['form'];
 
-  private _dispatchClickEvent(event: MouseEvent) {
+  private _dispatchClickEvent = (event: MouseEvent) => {
     const newClickEvent = new CustomEvent('jw-button-clicked', {
       bubbles: true,
       composed: true,
       detail: event,
-    });
+    }) as JwButtonClickedEvent;
 
-    this.buttonElement.dispatchEvent(newClickEvent);
-  }
-
-  override createRenderRoot() {
-    return this.attachShadow({
-      mode: 'open',
-      delegatesFocus: true,
-    });
-  }
-
-  protected override firstUpdated(): void {
-    if (this.buttonElement) {
-      this.buttonElement.addEventListener('click', this._dispatchClickEvent.bind(this));
-    }
-  }
+    this.dispatchEvent(newClickEvent);
+  };
 
   override updated(changedProperties: ChangedPropertiesParam): void {
     super.updated(changedProperties);
@@ -65,25 +48,13 @@ class JwButton extends LitElement implements JwButtonProps {
         }
       }
 
-      this._availableAriaAttributes.forEach((attr) => {
+      AVAILABLE_ARIA_ATTRIBUTES.forEach((attr) => {
         const value = this.getAttribute(attr);
 
         if (value) {
           this.buttonElement.setAttribute(attr, value);
-        } else {
-          this.buttonElement.removeAttribute(attr);
         }
-
-        this.removeAttribute(attr);
       });
-    }
-  }
-
-  override disconnectedCallback() {
-    super.disconnectedCallback();
-
-    if (this.buttonElement) {
-      this.buttonElement.removeEventListener('click', this._dispatchClickEvent.bind(this));
     }
   }
 
@@ -94,6 +65,7 @@ class JwButton extends LitElement implements JwButtonProps {
         ?disabled=${this.disabled}
         form=${ifDefined(this.form)}
         part="jw-internal-button"
+        @click=${this._dispatchClickEvent}
       >
         <slot name="prefix"></slot>
         <slot></slot>
