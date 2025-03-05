@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 export type ChangedPropertiesParam = Map<string | number | symbol, unknown>;
 
 export interface JwButtonClickedEvent extends CustomEvent<MouseEvent> {
@@ -10,3 +11,12 @@ export interface JwButtonProps {
   disabled?: boolean;
   form?: string;
 }
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'jw-button': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+    }
+  }
+}
+
