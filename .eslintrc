@@ -1,18 +1,23 @@
 {
   "extends": [
     "airbnb-base",
-    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:lit/recommended",
+    "plugin:lit-a11y/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "import",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "lit",
+    "lit-a11y"
   ],
   "root": true,
   "ignorePatterns": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "rollup.config.js"
   ],
   "settings": {
     "import/resolver": {
@@ -20,9 +25,13 @@
     }
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "es2021": true
   },
   "rules": {
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     // Import
     "import/no-unresolved": 0,
     "import/no-named-as-default": 1,
@@ -31,6 +40,8 @@
       "error",
       "never",
       {
+        "ts": "never",
+        "tsx": "never",
         "packages": "always"
       }
     ],
@@ -38,6 +49,7 @@
     "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
     "class-methods-use-this": 0,
     "no-tabs": "off",
+    "quotes": [2, "single", { "avoidEscape": true }],
     "indent": ["error", 2],
     "linebreak-style": 0,
     "max-len": ["error", 250, 2, { "ignoreComments": true }],

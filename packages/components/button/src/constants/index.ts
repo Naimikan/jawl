@@ -1,3 +1,5 @@
+const COMPONENT_TAG = 'jw-button';
+
 const AVAILABLE_ARIA_ATTRIBUTES = [
   'aria-label',
   'aria-labelledby',
@@ -9,5 +11,7 @@ const AVAILABLE_ARIA_ATTRIBUTES = [
   'aria-controls',
 ];
 
-// eslint-disable-next-line import/prefer-default-export
-export { AVAILABLE_ARIA_ATTRIBUTES };
+export {
+  AVAILABLE_ARIA_ATTRIBUTES,
+  COMPONENT_TAG,
+};

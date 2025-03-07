@@ -1,23 +1,25 @@
 {
   "compilerOptions": {
-    "target": "es2021",
+    "target": "es2020",
     "module": "es2020",
     "lib": ["es2021", "DOM", "DOM.Iterable"],
     "declaration": true,
+    "declarationDir": "./dist/types",
+    "emitDeclarationOnly": true,
     "declarationMap": true,
     "sourceMap": true,
     "inlineSources": true,
     "outDir": "./dist",
-    "declarationDir": "./dist/types",
     "rootDir": "./src",
     "strict": true,
+    "emitDecoratorMetadata": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
@@ -27,7 +29,7 @@
         "name": "ts-lit-plugin",
         "strict": true
       }
-    ],
+    ]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "rollup.config.js"]

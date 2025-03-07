@@ -15,8 +15,14 @@ export default {
     {
       file: path.resolve(__dirname, 'dist/index.js'),
       format: 'esm',
-      plugins: [terser()],
-      sourcemap: true,
+      minifyInternalExports: true,
+      compact: true,
+    },
+    {
+      file: path.resolve(__dirname, 'dist/index.cjs'),
+      format: 'cjs',
+      minifyInternalExports: true,
+      compact: true,
     },
   ],
   onwarn(warning) {
@@ -40,6 +46,10 @@ export default {
       ecma: 2021,
       module: true,
       warnings: true,
+      compress: {
+        drop_console: true,
+        pure_funcs: ['console.info', 'console.debug'],
+      },
       mangle: {
         properties: {
           regex: /^__/,
@@ -48,5 +58,5 @@ export default {
     }),
     summary(),
   ],
-  external: id => !id.startsWith(sourcePath) && !/^\.\.?\//.test(id),
+  external: id => (!id.startsWith(sourcePath) && !/^\.\.?\//.test(id)) || id === 'lit',
 };

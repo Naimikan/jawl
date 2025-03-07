@@ -6,9 +6,7 @@ const JwButtonStyles = css`
     display: inline-flex;
     flex: 0 0 auto;
     justify-content: center;
-    overflow: hidden;
     position: relative;
-    text-align: center;
     user-select: none;
     vertical-align: middle;
     white-space: nowrap;
@@ -24,11 +22,6 @@ const JwButtonStyles = css`
 
   button:not(:disabled):hover {
     text-decoration: none;
-  }
-
-  button:not(:disabled):focus-visible {
-    outline: 2px solid #007b77;
-    outline-offset: 2px;
   }
 
   ::slotted([slot="prefix"]) {

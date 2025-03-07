@@ -11,12 +11,3 @@ export interface JwButtonProps {
   disabled?: boolean;
   form?: string;
 }
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'jw-button': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-    }
-  }
-}
-

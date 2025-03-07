@@ -1,15 +1,14 @@
-/* eslint-disable max-classes-per-file */
 import { LitElement, html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import JwButtonStyles from './index.styles';
 
-import { AVAILABLE_ARIA_ATTRIBUTES } from '../../constants';
+import { AVAILABLE_ARIA_ATTRIBUTES, COMPONENT_TAG } from '../../constants';
 
-import { JwButtonProps, ChangedPropertiesParam, JwButtonClickedEvent } from './types';
+import { JwButtonProps, ChangedPropertiesParam } from './types';
 
-@customElement('jw-button')
+@customElement(COMPONENT_TAG)
 class JwButton extends LitElement implements JwButtonProps {
   static override styles = JwButtonStyles;
 
@@ -17,8 +16,6 @@ class JwButton extends LitElement implements JwButtonProps {
     ...LitElement.shadowRootOptions,
     delegatesFocus: true,
   };
-
-  @query('button') buttonElement!: HTMLButtonElement;
 
   @property({ type: String, reflect: true }) type: JwButtonProps['type'] = 'button';
 
@@ -31,7 +28,7 @@ class JwButton extends LitElement implements JwButtonProps {
       bubbles: true,
       composed: true,
       detail: event,
-    }) as JwButtonClickedEvent;
+    });
 
     this.dispatchEvent(newClickEvent);
   };
@@ -39,12 +36,14 @@ class JwButton extends LitElement implements JwButtonProps {
   override updated(changedProperties: ChangedPropertiesParam): void {
     super.updated(changedProperties);
 
-    if (this.buttonElement) {
+    const buttonElement = this.renderRoot.querySelector('button');
+
+    if (buttonElement) {
       if (changedProperties.has('disabled')) {
         if (this.disabled) {
-          this.buttonElement.setAttribute('aria-disabled', 'true');
+          buttonElement.setAttribute('aria-disabled', 'true');
         } else {
-          this.buttonElement.removeAttribute('aria-disabled');
+          buttonElement.removeAttribute('aria-disabled');
         }
       }
 
@@ -52,7 +51,7 @@ class JwButton extends LitElement implements JwButtonProps {
         const value = this.getAttribute(attr);
 
         if (value) {
-          this.buttonElement.setAttribute(attr, value);
+          buttonElement.setAttribute(attr, value);
         }
       });
     }

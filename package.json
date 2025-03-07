@@ -3,13 +3,13 @@
   "private": true,
   "description": "Just Another Webcomponent Library",
   "workspaces": [
-    "docs",
-    "packages/*"
+    "website",
+    "packages/components/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
-    "lint": "npm run lint --workspaces",
-    "start:docs": "npm run dev --workspaces"
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "start:docs": "turbo run dev --filter @jawl/website"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,8 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-typescript": "^3.8.3",
     "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-lit": "^1.15.0",
+    "eslint-plugin-lit-a11y": "^4.1.4",
     "husky": "^9.1.7",
     "rollup": "^4.34.8",
     "rollup-plugin-delete": "^2.2.0",
@@ -43,6 +45,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-summary": "^3.0.0",
     "tslib": "^2.8.1",
+    "turbo": "^2.4.4",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.1"
   },
@@ -65,5 +68,6 @@
         144
       ]
     }
-  }
+  },
+  "packageManager": "npm@10.9.2"
 }
