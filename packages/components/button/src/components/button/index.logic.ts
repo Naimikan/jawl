@@ -1,6 +1,7 @@
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { ThemeableElement } from '@jawl/theme-manager';
 
 import JwButtonStyles from './index.styles';
 
@@ -9,11 +10,13 @@ import { AVAILABLE_ARIA_ATTRIBUTES, COMPONENT_TAG } from '../../constants';
 import { JwButtonProps, ChangedPropertiesParam } from './types';
 
 @customElement(COMPONENT_TAG)
-class JwButton extends LitElement implements JwButtonProps {
-  static override styles = JwButtonStyles;
+class JwButton extends ThemeableElement implements JwButtonProps {
+  static override get styles() {
+    return [JwButtonStyles];
+  }
 
   static override shadowRootOptions = {
-    ...LitElement.shadowRootOptions,
+    ...ThemeableElement.shadowRootOptions,
     delegatesFocus: true,
   };
 

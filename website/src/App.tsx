@@ -4,11 +4,22 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 import '@jawl/button'
+import '@jawl/theme-manager';
+
+import { css } from '@jawl/theme-manager';
 
 import JwButton from './components/button'
 
 function App() {
     const [count, setCount] = useState(0)
+
+    const styles = {
+      'jw-button': css`
+        button {
+          background-color: blue !important;
+        }
+      `,
+    }
 
     return (
         <>
@@ -26,9 +37,11 @@ function App() {
             </div>
             <h1>Vite + React</h1>
             <div className="card">
-                <jw-button onClick={() => setCount((count) => count + 1)}>
-                  apsfhaspfh
-                </jw-button>
+                <jw-theme-manager styles={styles}>
+                  <jw-button onClick={() => setCount((count) => count + 1)}>
+                    apsfhaspfh
+                  </jw-button>
+                </jw-theme-manager>
 
                 <JwButton onClick={() => setCount((count) => count + 1)}>
                     count is {count}

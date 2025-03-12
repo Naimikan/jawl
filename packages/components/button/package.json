@@ -7,9 +7,9 @@
     "types": "dist/types/index.d.ts",
     "sideEffects": false,
     "exports": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/types/index.d.ts"
+        "import": "./dist/index.js",
+        "require": "./dist/index.cjs",
+        "types": "./dist/types/index.d.ts"
     },
     "files": [
         "dist"
@@ -27,6 +27,9 @@
     ],
     "author": "Guillem Aldeguer Lima",
     "homepage": "https://github.com/Naimikan/jawl#readme",
+    "dependencies": {
+      "@jawl/theme-manager": "^1.0.0"
+    },
     "peerDependencies": {
         "lit": "^3.2.1"
     }
