@@ -1,0 +1,66 @@
+{
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:lit/recommended",
+    "plugin:lit-a11y/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "import",
+    "@typescript-eslint",
+    "lit",
+    "lit-a11y"
+  ],
+  "root": true,
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "rollup.config.js"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    // Import
+    "import/no-unresolved": 0,
+    "import/no-named-as-default": 1,
+    "import/no-extraneous-dependencies": 0,
+    "import/extensions": [
+      "error",
+      "never",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "packages": "always"
+      }
+    ],
+    // Others
+    "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
+    "class-methods-use-this": 0,
+    "no-tabs": "off",
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "indent": ["error", 2],
+    "linebreak-style": 0,
+    "max-len": ["error", 250, 2, { "ignoreComments": true }],
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1 }],
+    "no-underscore-dangle": 0,
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": { "minProperties": 6, "multiline": true, "consistent": true },
+        "ObjectPattern": { "minProperties": 6, "multiline": true, "consistent": true }
+      }
+    ]
+  }
+}

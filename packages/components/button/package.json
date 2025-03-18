@@ -1,0 +1,36 @@
+{
+  "name": "@jawl/button",
+  "version": "1.0.0",
+  "description": "jawl-button",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs",
+    "types": "./dist/types/index.d.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run lint && tsc && rollup -c ./rollup.config.js --bundleConfigAsCjs",
+    "lint": "eslint --ext .ts,.js src"
+  },
+  "license": "MPL-2.0",
+  "keywords": [
+    "web components",
+    "lit",
+    "button",
+    "ui"
+  ],
+  "author": "Guillem Aldeguer Lima",
+  "homepage": "https://github.com/Naimikan/jawl#readme",
+  "dependencies": {
+    "@jawl/theme-manager": "^1.0.0"
+  },
+  "peerDependencies": {
+    "lit": "^3.2.1"
+  }
+}
