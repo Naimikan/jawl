@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint --ext .ts,.js,.tsx,.jsx src",
     "preview": "vite preview"
   },
   "dependencies": {
     "@jawl/button": "^1.0.0",
     "@jawl/theme-manager": "^1.0.0",
+    "@jawl/tooltip": "^1.0.0",
     "@lit/react": "^1.0.7",
     "lit": "^3.2.1",
     "react": "^19.0.0",

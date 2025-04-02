@@ -79,7 +79,7 @@ class JwButton extends ThemeableElement implements JwButtonProps {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'jw-button': JwButton;
+    [COMPONENT_TAG]: JwButton;
   }
 }
 

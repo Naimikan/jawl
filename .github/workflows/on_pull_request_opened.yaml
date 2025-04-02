@@ -1,0 +1,3 @@
+name: On pull request opened
+
+on: pull_request
