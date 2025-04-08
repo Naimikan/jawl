@@ -50,7 +50,7 @@
     "class-methods-use-this": 0,
     "no-tabs": "off",
     "quotes": [2, "single", { "avoidEscape": true }],
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "linebreak-style": 0,
     "max-len": ["error", 250, 2, { "ignoreComments": true }],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 0, "maxEOF": 1 }],
