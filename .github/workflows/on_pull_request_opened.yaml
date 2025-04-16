@@ -1,3 +1,20 @@
 name: On pull request opened
 
 on: pull_request
+
+jobs:
+  open_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prerequisites
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: 'package.json'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build the code
+        run: npm run build
