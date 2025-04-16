@@ -9,10 +9,11 @@ const getLeftBottomPosition = ({
 }: GetPositionParams) => {
   const {
     left: triggerElementLeft,
-    top: triggerElementTop,
+    bottom: triggerElementBottom,
   } = triggerElement.getBoundingClientRect();
 
   const {
+    height: floatingElementHeight,
     width: floatingElementWidth,
   } = floatingElement.getBoundingClientRect();
 
@@ -28,7 +29,7 @@ const getLeftBottomPosition = ({
   }
 
   return {
-    top: triggerElementTop,
+    top: triggerElementBottom - floatingElementHeight,
     left: triggerElementLeft - floatingElementWidth - arrowHeight,
   };
 };

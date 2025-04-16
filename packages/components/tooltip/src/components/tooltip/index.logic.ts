@@ -92,9 +92,7 @@ class JwTooltip extends ThemeableElement implements JwTooltipProps {
         withoutArrow: !!this.withoutArrow,
       });
 
-      console.log(left, top);
-
-      this.tooltipElement.style.transform = `translate(${left}px, ${top}px)`;
+      this.tooltipElement.style.transform = `translate3d(${left}px, ${top}px, 0px)`;
     }, delayStart);
   }
 
@@ -139,7 +137,7 @@ class JwTooltip extends ThemeableElement implements JwTooltipProps {
         const pointerLeaveHandler = this.closeTooltipEventHandler();
 
         triggerElement.addEventListener('pointerenter', pointerEnterHandler);
-        // triggerElement.addEventListener('pointerleave', pointerLeaveHandler);
+        triggerElement.addEventListener('pointerleave', pointerLeaveHandler);
 
         this._listeners.set(triggerElement, {
           pointerenter: pointerEnterHandler,

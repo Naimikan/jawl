@@ -10,7 +10,7 @@ const getBottomArrowStyle = () => css`
     height: 9px;
     left: calc(50% - 5px);
     position: absolute;
-    top: -5px;
+    top: -6px;
     transform: rotate(45deg);
     width: 9px;
   }

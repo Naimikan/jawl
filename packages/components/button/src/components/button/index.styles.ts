@@ -1,6 +1,12 @@
 import { css } from 'lit';
 
 const JwButtonStyles = css`
+  :host {
+    display: inline-flex;
+    height: auto;
+    width: auto;
+  }
+
   button {
     align-items: center;
     display: inline-flex;

@@ -8,14 +8,13 @@ const getRightPosition = ({
   withoutArrow,
 }: GetPositionParams) => {
   const {
-    left: triggerElementLeft,
+    right: triggerElementRight,
     top: triggerElementTop,
     height: triggerElementHeight,
   } = triggerElement.getBoundingClientRect();
 
   const {
     height: floatingElementHeight,
-    width: floatingElementWidth,
   } = floatingElement.getBoundingClientRect();
 
   let arrowHeight = 0;
@@ -31,7 +30,7 @@ const getRightPosition = ({
 
   return {
     top: (triggerElementTop + (triggerElementHeight / 2)) - (floatingElementHeight / 2),
-    left: triggerElementLeft + floatingElementWidth + arrowHeight,
+    left: triggerElementRight + arrowHeight,
   };
 };
 
